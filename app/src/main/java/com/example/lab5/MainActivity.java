@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-    String imgDir;
+    String imgDir = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onConfirm(View view){
+        if (imgDir.matches("")){
+            return;
+        }
         Intent next = new Intent(getApplicationContext(), Main2Activity.class);
         next.putExtra("Image Directory", imgDir);
         startActivity(next);
