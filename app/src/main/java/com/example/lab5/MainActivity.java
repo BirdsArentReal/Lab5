@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onTakePicture(View view){
+    public void onChoosePicture(View view){
         Intent pickPhoto = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickPhoto , 1);
     }
 
-    public void onChoosePicture(View view){
+    public void onTakePicture(View view){
         Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(takePicture, 0);
     }
@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         ImageView img = findViewById(R.id.pictureView);
         boolean passed = false;
-        Bitmap selectedImage = null;
+        Bitmap imageBitmap = null;
         switch(requestCode) {
             case 0:
                 if(resultCode == RESULT_OK){
                     Bundle extras = imageReturnedIntent.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    imageBitmap = (Bitmap) extras.get("data");
                     img.setImageBitmap(imageBitmap);
                     passed = true;
                 }
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 if(resultCode == RESULT_OK){
                     Bundle extras = imageReturnedIntent.getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
+                    imageBitmap = (Bitmap) extras.get("data");
                     img.setImageBitmap(imageBitmap);
                     passed = true;
                 }
@@ -78,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if (passed){
             try{
-                if (selectedImage == null){
-                    Toast toast = Toast.makeText(getApplicationContext(), "How unfortunate, it failed", Toast.LENGTH_SHORT);
+                if (imageBitmap == null){
+                    Toast toast = Toast.makeText(getApplicationContext(), "How unfortunate, you failed", Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 else{
-                    imgDir = saveToInternalStorage(selectedImage);
+                    imgDir = saveToInternalStorage(imageBitmap);
                 }
 
             }catch (Exception e){
