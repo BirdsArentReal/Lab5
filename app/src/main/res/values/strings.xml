@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">NOT IF BUT WHEN</string>
+    <string-array name="troubles">
+        <item>Report a fault (School facilities)</item>
+        <item>Report a classmate</item>
+        <item>Suggest an improvement</item>
+    </string-array>
 </resources>
