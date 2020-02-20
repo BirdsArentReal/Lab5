@@ -18,7 +18,7 @@ public class Main2Activity extends AppCompatActivity{
         Intent intent = getIntent();
         imgDir = intent.getStringExtra("Image Directory");
 
-    }
+    }//test
 
 
 
